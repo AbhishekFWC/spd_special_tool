@@ -2,8 +2,7 @@ import React from "react";
 import { TbMathGreater } from "react-icons/tb";
 import Filters from "@/components/Filters/Filters";
 import FilterResult from "@/components/home/FilterResult";
-
-const Home = () => {
+const Pitches = () => {
   return (
     <div className="px-10  mt-5 w-full font-light space-y-5">
       <div className="w-full flex space-x-2 items-center tracking-wide px-2">
@@ -25,4 +24,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Pitches;
