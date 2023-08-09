@@ -8,6 +8,7 @@ import {
 } from "react-icons/bs";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import { TbSearch } from "react-icons/tb";
+import gsap from 'gsap';
 
 interface Props {
   title: string;
@@ -20,13 +21,20 @@ const FilterType: React.FC<Props> = ({ filterType, data, title }) => {
   const { reducer } = useFilter();
 
   const handlDropDown = () => {
+    const dropdownContent = document.querySelector('.dropdown');
+
+    gsap.to(dropdownContent, {
+      height: open ? 0 : 'auto',
+      opacity: open ? 0 : 1,
+      duration: 0.3,
+      ease: 'power2.out',
+    });
     setOpen((prev) => !prev);
   };
 
   const { filters } = useFilter();
 
   const handleToggle = (e: any) => {
-    console.log(filters[filterType]);
     if (e.target.checked) {
       if (filterType == "industry") {
         reducer({ type: "ADD_INDUSTRY", payload: { industry: e.target.name } });
@@ -75,7 +83,7 @@ const FilterType: React.FC<Props> = ({ filterType, data, title }) => {
 
       {/* <----------------------------------------- Dropdown -------------------------------> */}
       {open && (
-        <div className="space-y-5">
+        <div className={`space-y-5 dropdown overflow-hidden ${open ? 'h-auto opacity-100' : 'h-0 opacity-0'} transition-all duration-300 ease-in-out`}>
           {/* <------------------------------ Search Input --------------------------> */}
           <div>
             {filterType !== "investmentRange" ? (
