@@ -14,6 +14,7 @@ const Filters = () => {
   const resetFilters = () => {
     reducer({ type: "RESET" });
   };
+
   return (
     <>
       <div className="flex space-x-3 items-center mx-3 py-2 border-gray-100 border-b-[1px]">
@@ -30,10 +31,10 @@ const Filters = () => {
         {/* <-----------------------------------Keywords-------------------------------->  */}
         <div className="flex flex-wrap py-2 border-gray-100 border-b-[1px]">
           {filters.industry?.map((ele) => (
-            <Keyword filterType="industry" keyword={ele} />
+            <Keyword key={ele} filterType="industry" keyword={ele} />
           ))}
           {filters.round.map((ele) => (
-            <Keyword filterType="round" keyword={ele} />
+            <Keyword key={ele} filterType="round" keyword={ele} />
           ))}
         </div>
         {/* <-----------------------------------Filters-------------------------------------> */}

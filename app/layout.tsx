@@ -21,7 +21,7 @@ export default function RootLayout({
   if (pathName == "/login") {
     return (
       <html lang="en">
-        <body className="poppins.calssName">{children}</body>
+        <body className="poppins.calssName" id="root">{children}</body>
       </html>
     );
   }
@@ -32,6 +32,7 @@ export default function RootLayout({
           <Navbar />
           <FilterContextProvider>{children}</FilterContextProvider>
         </AuthContextProvider>
+        <div id="portal"></div>
       </body>
     </html>
   );

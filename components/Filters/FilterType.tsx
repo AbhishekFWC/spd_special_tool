@@ -73,10 +73,10 @@ const FilterType: React.FC<Props> = ({ filterType, data, title }) => {
   };
 
   return (
-    <div className="py-2 w-full border-gray-100 border-b-[1px] space-y-2">
-      <div className="flex justify-between items-center">
+    <div className="py-2 w-full border-gray-100 border-b-[1px] space-y-2 hover:translate-x-2 transition">
+      <div className="flex justify-between items-center cursor-pointer" onClick={handlDropDown}>
         <p className="tracking-wide font-medium">{title}</p>{" "}
-        <button onClick={handlDropDown}>
+        <button>
           {open ? <FiChevronDown /> : <FiChevronRight />}
         </button>
       </div>

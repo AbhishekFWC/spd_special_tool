@@ -1,33 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import InvestorCard from "../investor/InvestorCard";
+import Modal from "../modals/Modal";
+import SaveSearch from "../save search/SaveSearch";
+import { BsFolderPlus } from "react-icons/bs";
 
 const FilterResult = () => {
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const closeModal = () => {
+    setOpenModal(false);
+  };
+
+  const handleModal = () => {
+    setOpenModal((prev) => !prev);
+  };
+  
   return (
     <>
-      <div className="text-xs flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <p>Active in </p>{" "}
-          <span className="border-gray-300 border-[1px] px-2 py-1">
-            {" "}
-            6 months
-          </span>
-        </div>
-        <div className="flex items-center space-x-5">
-          <div>show 20</div>
-          <div className="flex items-center space-x-2 justify-center">
-            <button>
-              {" "}
-              <BiChevronLeft class />{" "}
-            </button>
-            <p className="shadow-md p-1">page 1 of 34</p>
-            <button>
-              <BiChevronRight />
-            </button>
+      <div className="flex items-center justify-between w-full p-2 shadow-md g-white p">
+        <div className="flex items-center justify-center space-x-5">
+          <div className="flex items-center justify-center space-x-2">
+            <input type="checkbox" id="select-all" />
+            <label htmlFor="select-all">Select All</label>
           </div>
+          <button
+            onClick={handleModal}
+            className="flex items-center justify-center space-x-2"
+          >
+            <BsFolderPlus />
+            <span>Add to folder</span>
+          </button>
         </div>
+        <div className="flex items-center justify-center space-x-2">
+          <button>
+            {" "}
+            <BiChevronLeft class />{" "}
+          </button>
+          <p className="">page 1 of 34</p>
+          <button>
+            <BiChevronRight />
+          </button>
+        </div>
+        <Modal isOpen={openModal} closeModal={closeModal}>
+          <SaveSearch />
+        </Modal>
       </div>
-
       {/* <--------------------------Investor--------------Profile */}
       <InvestorCard imgUrl="https://media.licdn.com/dms/image/D5603AQHmYDodM0rsJg/profile-displayphoto-shrink_400_400/0/1691426112228?e=1697068800&v=beta&t=VBHq8kLYSUMZCrKJSozgQWS-ym2JooHUMf8FGnW-vv0" />
       <InvestorCard imgUrl="https://media.licdn.com/dms/image/D4D03AQF7DVMe4QvgWA/profile-displayphoto-shrink_400_400/0/1673517440334?e=1697068800&v=beta&t=n5ZAq06XdojK5BeqlTd-kWHKzNUBOqBgxoXGKMStbOs" />

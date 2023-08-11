@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import Image from "next/image";
@@ -15,7 +15,8 @@ const Navbar = () => {
 
   return (
     <nav className="shadow-md w-screen flex justify-center items-center">
-      <div className="flex justify-between items-center w-full 2xl:max-w-6xl mx-auto py-5 px-10">
+      {/* <------------------------------ Desktop Nav -------------------------> */}
+      <div className="hidden lg:flex justify-between items-center w-full 2xl:max-w-6xl mx-auto py-5 px-10">
         {/* <------------------------------ Logo and Navigations ---------------------------> */}
         <div className="flex justify-center items-center space-x-10">
           <div>
@@ -23,19 +24,31 @@ const Navbar = () => {
           </div>
           <div>
             <ul className="flex justify-center space-x-8">
-              <li onClick={()=> router.push('/') } className="cursor-pointer flex space-x-2 items-center">
+              <li
+                onClick={() => router.push("/")}
+                className="cursor-pointer flex space-x-2 items-center"
+              >
                 <GoHome />
                 <span>Home</span>
               </li>
-              <li onClick={() => router.push('/investors')} className="cursor-pointer flex space-x-2 items-center">
+              <li
+                onClick={() => router.push("/investors")}
+                className="cursor-pointer flex space-x-2 items-center"
+              >
                 <TbMoneybag />
                 <span>Investors</span>
               </li>
-              <li onClick={() => router.push('/pitches')} className="cursor-pointer flex space-x-2 items-center">
+              <li
+                onClick={() => router.push("/pitches")}
+                className="cursor-pointer flex space-x-2 items-center transition-transform duration-300"
+              >
                 <RiFilePdfLine />
                 <span>Pitches</span>
               </li>
-              <li onClick={() => router.push('/entreprenuers')} className="cursor-pointer flex space-x-2 items-center">
+              <li
+                onClick={() => router.push("/entreprenuers")}
+                className="cursor-pointer flex space-x-2 items-center"
+              >
                 <IoBusinessOutline />
                 <span>Entreprenuers</span>
               </li>
@@ -69,6 +82,11 @@ const Navbar = () => {
             </div>
             <p>Abhishek Bhat</p>
           </div>
+        </div>
+      </div>
+      <div className="w-full bg-white px-10 lg:hidden">
+        <div>
+          <Image src={logo} alt="Profile pic" width={100} className="" />
         </div>
       </div>
     </nav>
