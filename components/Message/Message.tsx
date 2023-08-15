@@ -6,7 +6,7 @@ interface Props {
   time?: string;
   sentBy?: string;
 }
-import useAuth from "@/hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const Message: React.FC<Props> = ({ _id, message, time, sentBy }) => {
   const { user } = useAuth();

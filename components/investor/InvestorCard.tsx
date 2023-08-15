@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { BsChatLeftText, BsClock, BsShare } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import { CiLocationOn, CiShare2, CiClock2, CiMail } from "react-icons/ci";
-
+import useChat from "@/hooks/useChat";
 import { TbSquareRoundedLetterR } from "react-icons/tb";
 import { LuMail } from "react-icons/lu";
 import { MdOutlineVerified } from "react-icons/md";
@@ -25,6 +25,7 @@ interface Props {
   lastName?: string;
   position?: string;
   contact?: string;
+  firmName?: string;
   location?: string;
   minInvest?: number;
   maxInvest?: number;
@@ -38,9 +39,38 @@ interface Props {
   round?: string[];
 }
 
-const InvestorCard: React.FC<Props> = ({ imgUrl }) => {
+const InvestorCard: React.FC<Props> = ({
+  imgUrl,
+  firstName,
+  lastName,
+  email,
+  contact,
+  position,
+  firmName,
+  sweetSpot,
+  minInvest,
+  maxInvest,
+  round,
+  _id,
+  industry,
+  lead,
+  location,
+}) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [hover, setHover] = useState<boolean>(false);
+  const { setOpenMsgBox, setReceiver } = useChat();
+
+  const createConversation = (
+    _id: string,
+    imgUrl: string,
+    firstName: string,
+    lastName: string,
+    firmName?: string,
+    position?: string
+  ) => {
+    setReceiver((prev) => ({...prev,_id,imgUrl,firstName,lastName,position,firmName}));
+    setOpenMsgBox((prev) => !prev);
+  };
 
   useEffect(() => {
     const ref = cardRef.current;
@@ -80,8 +110,10 @@ const InvestorCard: React.FC<Props> = ({ imgUrl }) => {
               alt="profile pic"
               className="object-cover rounded-full"
             />
-            <p className="text-base font-medium">Tejaswee Tripathy</p>
-            <p className="text-[12px]">HR & Talent Acquisition</p>
+            <p className="text-base font-medium">
+              {firstName} {lastName}
+            </p>
+            <p className="text-[12px]">{firmName}</p>
           </div>
           <div className="flex flex-col items-center justify-center text-lg ">
             <div
@@ -116,7 +148,7 @@ const InvestorCard: React.FC<Props> = ({ imgUrl }) => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 text-base">
               <HiOutlineMail />
-              <p>abhishekbhat.dev@gmail.com</p>
+              <p>{email}</p>
               <MdOutlineVerified className="text-blue-600" />
             </div>
             <div className="flex items-center space-x-2 text-base">
@@ -129,10 +161,10 @@ const InvestorCard: React.FC<Props> = ({ imgUrl }) => {
           {/* <--------------------------- Location and investment ------------------------> */}
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-center space-x-1 ">
-              <TfiWallet /> <p>$ 4.20 M</p>
+              <TfiWallet /> <p>$ {sweetSpot}</p>
             </div>
             <div className="flex items-center justify-center">
-              <CiLocationOn /> <p>Bangalore, India</p>
+              <CiLocationOn /> <p>{location}</p>
             </div>
             <div className="flex items-center justify-center">
               <TbSquareRoundedLetterR /> <p>Pre - Seed</p>
@@ -146,13 +178,16 @@ const InvestorCard: React.FC<Props> = ({ imgUrl }) => {
             <p className="basis-[30%] flex justify-between items-center">
               Industries <span>:</span>
             </p>{" "}
-            <p>SAAS, Fintech</p>
+            <p>{industry}</p>
           </div>
           <div className="flex items-center w-full space-x-5">
             <p className="basis-[30%] flex justify-between items-center">
               Investment Range <span>:</span>
             </p>{" "}
-            <p> 100 K - 500 K</p>
+            <p>
+              {" "}
+              {minInvest} - {maxInvest}
+            </p>
           </div>
           <div className="flex items-center w-full space-x-5">
             <p className="basis-[30%] flex justify-between items-center">
@@ -164,7 +199,7 @@ const InvestorCard: React.FC<Props> = ({ imgUrl }) => {
             <p className="basis-[30%] flex justify-between items-center">
               Lead Investor<span>:</span>
             </p>{" "}
-            <p> Yes</p>
+            <p> {lead ? "YES" : "NO"}</p>
           </div>
         </div>
       </div>
@@ -174,7 +209,21 @@ const InvestorCard: React.FC<Props> = ({ imgUrl }) => {
         <BsShare className="transition duration-300 cursor-pointer hover:z-50 hover:shadow-md" />
         <BsClock className="cursor-pointer" />
         <LuMail className="cursor-pointer" />
-        <BsChatLeftText className="cursor-pointer" />
+        <button
+          onClick={() =>
+            createConversation(
+              firstName!,
+              lastName!,
+              imgUrl!,
+              firmName!,
+              position,
+              _id!,
+            )
+          }
+        >
+          {" "}
+          <BsChatLeftText className="cursor-pointer" />
+        </button>
       </div>
     </div>
   );

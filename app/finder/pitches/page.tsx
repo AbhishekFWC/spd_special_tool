@@ -1,8 +1,8 @@
 import React from "react";
 import { TbMathGreater } from "react-icons/tb";
-import Filters from "@/components/Filters/Filters";
+import Filters from "../../../components/Filters/Filters";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import PitchCard from "@/components/pitch/PitchCard";
+import PitchCard from "../../../components/pitch/PitchCard";
 
 const Pitches = () => {
   return (

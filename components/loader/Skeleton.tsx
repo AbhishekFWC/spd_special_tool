@@ -1,6 +1,5 @@
 import React from "react";
-import Image from "next/image";
-import AvatarIcon from "@/utils/icons/AvatarIcon";
+import AvatarIcon from "../../utils/icons/AvatarIcon";
 
 const Skeleton = () => {
   return (

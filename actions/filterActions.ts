@@ -15,17 +15,22 @@ export const filterInvestor = async (
 
   const query = `industry=${industries}&round=${rounds}&location=${locations}&investFrom=`;
   const token = localStorage.getItem("token");
-  console.log('industry',industries);
-  console.log('rounds',rounds);
-  // try {
-  //   const response = await axios.get("${BASE_URL}/navigator?" + query, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-  // } catch (error) {
-  //   console.log(error)
-  // }
+  console.log("industry", industries);
+  console.log("rounds", rounds);
+  try {
+    const response = await axios.get(`${BASE_URL}/finder/investors?`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response);
+    if (response.status === 200)
+      return Promise.resolve({ success: true, data: response.data });
+    else return Promise.resolve({'success' : false, data : response.data});
+  } catch (error) {
+    console.log(error);
+    return Promise.resolve({ success: false, data: error });
+  }
 };
 
 export const filterPitcher = async () => {};

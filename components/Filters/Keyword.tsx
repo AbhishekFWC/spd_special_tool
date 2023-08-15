@@ -1,6 +1,6 @@
 import React, { use } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import useFilter from "@/hooks/useFilter";
+import useFilter from "../../hooks/useFilter";
 interface Props {
   keyword: string;
   filterType: string;

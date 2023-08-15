@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BsChatLeftText, BsClock, BsShare } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
-import { CiLocationOn, CiShare2, CiClock2, CiMail } from "react-icons/ci";
+import { CiLocationOn } from "react-icons/ci";
 
 import { TbSquareRoundedLetterR } from "react-icons/tb";
 import { LuMail } from "react-icons/lu";
@@ -11,9 +11,9 @@ import { RxMobile } from "react-icons/rx";
 import { TfiWallet } from "react-icons/tfi";
 import { FcGlobe } from "react-icons/fc";
 
-import TwitterIcon from "@/utils/icons/TwitterIcon";
-import YoutubeIcon from "@/utils/icons/YoutubeIcon";
-import LinkedinIcon from "@/utils/icons/LinkedinIcon";
+import TwitterIcon from "../../utils/icons/TwitterIcon";
+import YoutubeIcon from "../../utils/icons/YoutubeIcon";
+import LinkedinIcon from "../../utils/icons/LinkedinIcon";
 
 import Image from "next/image";
 

@@ -1,4 +1,4 @@
-import { ChatContext } from "@/context/chat/ChatContext";
+import { ChatContext } from "../context/chat/ChatContext";
 import { useContext } from "react";
 
 

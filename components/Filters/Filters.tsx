@@ -1,12 +1,10 @@
 "use client";
 import React from "react";
 import { CiFilter } from "react-icons/ci";
-import { AiOutlineClose } from "react-icons/ai";
-import { BsChevronCompactDown, BsChevronCompactRight } from "react-icons/bs";
-import { industryTypes, roundTypes } from "@/utils/filterTypes";
+import { industryTypes, roundTypes } from "../../utils/filterTypes";
 import Keyword from "./Keyword";
 import FilterType from "./FilterType";
-import useFilter from "@/hooks/useFilter";
+import useFilter from "../../hooks/useFilter";
 
 const Filters = () => {
   const { filters, reducer } = useFilter();

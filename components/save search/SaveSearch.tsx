@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BsFolder } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
-import { AiOutlineCloseCircle } from "react-icons/ai";
-
 
 interface Props {
   closeModal: () => void;

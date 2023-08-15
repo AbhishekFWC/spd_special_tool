@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/utils/config";
+import { BASE_URL } from "../utils/config";
 import axios from "axios";
 
 export const createOrGetConversation = async (id: string) => {
@@ -20,4 +20,16 @@ export const createOrGetConversation = async (id: string) => {
 
 export const sendMessage = () => {};
 
-export const getMessages = async () => {};
+export const getMessages = async () => {
+try {
+  const response = await axios.get(`${BASE_URL}/message`)
+  if(response.status === 200){
+    return Promise.resolve({'success':true ,data : response.data})
+  }
+} catch (error) {
+  
+}
+
+};
+
+

@@ -2,7 +2,6 @@
 import React from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import Image from "next/image";
-import profile from "../public/abhishek.jpeg";
 import logo from "../public/spd.svg";
 
 import { IoBusinessOutline } from "react-icons/io5";
@@ -16,7 +15,7 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-center w-screen shadow-md">
       {/* <------------------------------ Desktop Nav -------------------------> */}
-      <div className="items-center justify-between hidden w-full px-10 py-5 mx-auto lg:flex">
+      <div className="items-center justify-between hidden w-full px-10 py-2 mx-auto lg:flex">
         {/* <------------------------------ Logo and Navigations ---------------------------> */}
         <div className="flex items-center justify-center space-x-10">
           <div>

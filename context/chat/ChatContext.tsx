@@ -13,11 +13,23 @@ interface ChatContextInterface {
   websocket: WebSocket | null;
   msgState: {};
   msgReducer: React.Dispatch<any>;
+  receiver: ReceiverInterface | null;
+  setReceiver: React.Dispatch<React.SetStateAction<ReceiverInterface>>;
 }
 
+interface ReceiverInterface {
+  imgUrl: string;
+  _id: string;
+  firstName: string;
+  lastName: string;
+  position?: string;
+  firmName?: string;
+}
 const initialState: ChatContextInterface = {
   openMsgBox: false,
   setOpenMsgBox: () => {},
+  receiver: null,
+  setReceiver: () => {},
   msgState: {},
   msgReducer: () => {},
   websocket: null,
@@ -30,8 +42,15 @@ interface Props {
 }
 
 export const ChatContextProvider: React.FC<Props> = ({ children }) => {
-  const [openMsgBox, setOpenMsgBox] = useState<boolean>(true);
-
+  const [openMsgBox, setOpenMsgBox] = useState<boolean>(false);
+  const [receiver, setReceiver] = useState<ReceiverInterface>({
+    firstName: "",
+    lastName: "",
+    imgUrl: "",
+    position: "",
+    firmName: "",
+    _id: "",
+  });
   const socketRef = useRef<WebSocket | null>(null);
 
   useEffect(() => {
@@ -49,6 +68,7 @@ export const ChatContextProvider: React.FC<Props> = ({ children }) => {
   }, []);
 
   const [msgState, msgReducer] = useReducer(messageReducer, []);
+
   return (
     <ChatContext.Provider
       value={{
@@ -57,6 +77,8 @@ export const ChatContextProvider: React.FC<Props> = ({ children }) => {
         msgState,
         msgReducer,
         websocket: socketRef.current,
+        receiver,
+        setReceiver,
       }}
     >
       {children}

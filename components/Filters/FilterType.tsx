@@ -1,14 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import useFilter from "@/hooks/useFilter";
-import {
-  Bs0Circle,
-  BsChevronCompactDown,
-  BsChevronCompactRight,
-} from "react-icons/bs";
+import useFilter from "../../hooks/useFilter";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import { TbSearch } from "react-icons/tb";
-
 import { LiaRupeeSignSolid } from "react-icons/lia";
 interface Props {
   title: string;
@@ -61,19 +55,18 @@ const FilterType: React.FC<Props> = ({ filterType, data, title }) => {
 
   // filtering the availabel data
   const handleChange = (e: any) => {
-    console.log(e.target.value);
     const regex = new RegExp(e.target.value, "i");
     const filteredData = data?.filter((industry) => regex.test(industry));
     if (filteredData) setFilteredData(filteredData);
   };
 
   return (
-    <div className="py-2 w-full border-gray-100 border-b-[1px] space-y-2 hover:translate-x-2 transition">
+    <div className="py-2 w-full border-gray-100 border-b-[1px] space-y-2 ">
       <div
-        className="flex items-center justify-between cursor-pointer"
+        className="flex items-center justify-between transition cursor-pointer hover:translate-x-2"
         onClick={handlDropDown}
       >
-        <p className="font-medium tracking-wide">{title}</p>{" "}
+        <p className="font-medium tracking-wide ">{title}</p>{" "}
         <button>{open ? <FiChevronDown /> : <FiChevronRight />}</button>
       </div>
 

@@ -1,6 +1,6 @@
 "use client";
 import React, { SetStateAction, createContext, useEffect, useState } from "react";
-import { checkLoginUser } from "@/actions/authActions";
+import { checkLoginUser } from "../../actions/authActions";
 import { useRouter } from "next/navigation";
 
 interface AuthContextInterface {
