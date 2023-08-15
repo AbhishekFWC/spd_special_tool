@@ -16,9 +16,9 @@ import Image from "next/image";
 import TwitterIcon from "@/utils/icons/TwitterIcon";
 import YoutubeIcon from "@/utils/icons/YoutubeIcon";
 import LinkedinIcon from "@/utils/icons/LinkedinIcon";
-import GithubIcon from "@/utils/icons/GithubIcon";
 
 interface Props {
+  _id?: string;
   imgUrl?: string;
   email?: string;
   firstName?: string;
@@ -60,15 +60,13 @@ const InvestorCard: React.FC<Props> = ({ imgUrl }) => {
   return (
     <div
       ref={cardRef}
-      className="relative flex w-full text-sm transition duration-300 bg-white shadow-sm hover:z-50 hover:shadow-2xl"
+      className="relative flex w-full text-sm transition duration-300 bg-white shadow-sm hover:z-50 hover:shadow-2xl rounded-[5px]"
     >
       {/* <-------------------------Profile-------------------------> */}
       <div className="basis-[30%] border-r-[1px] border-gray-100 p-2 space-y-10">
         <div className="flex items-center w-full space-x-2">
           <input type="checkbox" className="" />
-          <label htmlFor="" className="flex">
-
-          </label>
+          <label htmlFor="" className="flex"></label>
         </div>
 
         {/* <----------------------Image section -----------------------> */}

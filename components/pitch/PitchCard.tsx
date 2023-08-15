@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { BiLike } from "react-icons/bi";
 import { FcGlobe } from "react-icons/fc";
 import { BsStarFill } from "react-icons/bs";
+import { FaRupeeSign } from "react-icons/fa";
 
 import Image from "next/image";
 
@@ -11,7 +12,7 @@ import TwitterIcon from "@/utils/icons/TwitterIcon";
 import YoutubeIcon from "@/utils/icons/YoutubeIcon";
 import LinkedinIcon from "@/utils/icons/LinkedinIcon";
 import { GrFormView } from "react-icons/gr";
-import {CgAttachment} from 'react-icons/cg';
+import { CgAttachment } from "react-icons/cg";
 
 interface Props {
   imgUrl?: string;
@@ -61,8 +62,7 @@ const InvestorCard: React.FC<Props> = ({ imgUrl }) => {
       <div className="basis-[30%] border-r-[1px] border-gray-100 p-2 space-y-10">
         <div className="flex items-center w-full space-x-2">
           <input type="checkbox" className="" />
-          <label htmlFor="" className="flex">
-          </label>
+          <label htmlFor="" className="flex"></label>
         </div>
 
         {/* <----------------------Image section -----------------------> */}
@@ -120,23 +120,34 @@ const InvestorCard: React.FC<Props> = ({ imgUrl }) => {
             </p>{" "}
             <p>Bangalore, India </p>
           </div>
-          <div className="flex items-center w-full space-x-5">
-            <p className="basis-[30%] flex justify-between items-center">
-              Lead Investor<span>:</span>
-            </p>{" "}
-            <p> Yes</p>
-          </div>
+
           <div className="flex items-center w-full space-x-5">
             <p className="basis-[30%] flex justify-between items-center">
               Ask <span>:</span>
             </p>{" "}
-            <p>1 M</p>
+            <div className="flex items-center justify-center">
+              <span>
+                <FaRupeeSign />
+              </span>
+              <p className="px-2">1M</p>
+            </div>
           </div>
           <div className="flex items-center w-full space-x-5">
             <p className="basis-[30%] flex justify-between items-center">
               Round <span>:</span>
             </p>{" "}
             <p>Pre - Seed </p>
+          </div>
+          <div className="flex items-center w-full space-x-5">
+            <p className="basis-[30%] flex justify-between items-center">
+              Investment Raised<span>:</span>
+            </p>{" "}
+            <div className="flex items-center justify-center">
+              <span>
+                <FaRupeeSign />
+              </span>
+              <p className="px-2">1M</p>
+            </div>
           </div>
         </div>
         <div className="flex justify-between px-5 text-lg">
@@ -156,8 +167,10 @@ const InvestorCard: React.FC<Props> = ({ imgUrl }) => {
             </div>
           </div>
           <div className="flex items-center justify-center space-x-2 text-purple-700 cursor-pointer">
-              <p className="text-sm ">View Pitch</p>
-              <button><CgAttachment/></button>
+            <p className="text-sm ">View Pitch</p>
+            <button>
+              <CgAttachment />
+            </button>
           </div>
         </div>
       </div>

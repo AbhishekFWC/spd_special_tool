@@ -8,8 +8,8 @@ import {
 } from "react-icons/bs";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import { TbSearch } from "react-icons/tb";
-import gsap from 'gsap';
 
+import { LiaRupeeSignSolid } from "react-icons/lia";
 interface Props {
   title: string;
   filterType: string;
@@ -21,18 +21,11 @@ const FilterType: React.FC<Props> = ({ filterType, data, title }) => {
   const { reducer } = useFilter();
 
   const handlDropDown = () => {
-    const dropdownContent = document.querySelector('.dropdown');
-
-    gsap.to(dropdownContent, {
-      height: open ? 0 : 'auto',
-      opacity: open ? 0 : 1,
-      duration: 0.3,
-      ease: 'power2.out',
-    });
+    const dropdownContent = document.querySelector(".dropdown");
     setOpen((prev) => !prev);
   };
 
-  const { filters } = useFilter();
+  const { filters, setFilter } = useFilter();
 
   const handleToggle = (e: any) => {
     if (e.target.checked) {
@@ -45,6 +38,7 @@ const FilterType: React.FC<Props> = ({ filterType, data, title }) => {
       } else if (filterType === "round") {
         reducer({ type: "ADD_ROUND", payload: { round: e.target.name } });
       }
+      setFilter((prev) => !prev);
     } else {
       if (filterType === "industry") {
         reducer({
@@ -59,6 +53,7 @@ const FilterType: React.FC<Props> = ({ filterType, data, title }) => {
       } else if (filterType === "round") {
         reducer({ type: "REMOVE_ROUND", payload: { round: e.target.name } });
       }
+      setFilter((prev) => !prev);
     }
   };
 
@@ -74,51 +69,61 @@ const FilterType: React.FC<Props> = ({ filterType, data, title }) => {
 
   return (
     <div className="py-2 w-full border-gray-100 border-b-[1px] space-y-2 hover:translate-x-2 transition">
-      <div className="flex justify-between items-center cursor-pointer" onClick={handlDropDown}>
-        <p className="tracking-wide font-medium">{title}</p>{" "}
-        <button>
-          {open ? <FiChevronDown /> : <FiChevronRight />}
-        </button>
+      <div
+        className="flex items-center justify-between cursor-pointer"
+        onClick={handlDropDown}
+      >
+        <p className="font-medium tracking-wide">{title}</p>{" "}
+        <button>{open ? <FiChevronDown /> : <FiChevronRight />}</button>
       </div>
 
       {/* <----------------------------------------- Dropdown -------------------------------> */}
       {open && (
-        <div className={`space-y-5 dropdown overflow-hidden ${open ? 'h-auto opacity-100' : 'h-0 opacity-0'} transition-all duration-300 ease-in-out`}>
+        <div
+          className={`space-y-5 dropdown overflow-hidden ${
+            open ? "h-auto opacity-100" : "h-0 opacity-0"
+          } transition-all duration-300 ease-in-out`}
+        >
           {/* <------------------------------ Search Input --------------------------> */}
           <div>
             {filterType !== "investmentRange" ? (
               <label
                 htmlFor="search"
-                className="flex items-center bg-gray-50 px-2 shadow-sm rounded-md"
+                className="flex items-center px-2 rounded-md shadow-sm bg-gray-50"
               >
                 <input
                   type="text"
-                  className="outline-none bg-gray-50 text-gray-900 w-full px-2 py-2 rounded-md"
+                  className="w-full px-2 py-2 text-gray-900 rounded-md outline-none bg-gray-50"
                   placeholder="SAAS"
                   onChange={(e) => handleChange(e)}
                 />
                 <TbSearch className="text-lg" />
               </label>
             ) : (
-              <div className="">
+              <div>
                 <div>
-                  <p className="text-xs"> INR (in Lacs)</p>
-                  <div className="space-x-5 flex">
+                  <div className="flex space-x-5">
                     <div className="space-y-2 basis-1/2">
-                      <span> From :</span>
+                      <span className="flex items-center space-x-2">
+                        {" "}
+                        <p>From</p> <LiaRupeeSignSolid />
+                      </span>
                       <input
                         name="from"
                         type="number"
-                        className="outline-none w-full appearance-none py-1 px-2 bg-gray-100 rounded-md"
+                        className="w-full px-2 py-1 bg-gray-100 rounded-md outline-none appearance-none"
                         placeholder="10"
                       />
                     </div>
                     <div className="space-y-2 basis-1/2">
-                      <span> To :</span>
+                      <span className="flex items-center space-x-2">
+                        {" "}
+                        <p>To</p> <LiaRupeeSignSolid />
+                      </span>
                       <input
                         name="from"
                         type="number"
-                        className="outline-none appearance-non w-full py-1 px-2 bg-gray-100 rounded-md"
+                        className="w-full px-2 py-1 bg-gray-100 rounded-md outline-none appearance-non"
                         placeholder="100"
                       />
                     </div>

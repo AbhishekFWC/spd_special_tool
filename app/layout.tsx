@@ -1,39 +1,31 @@
-"use client";
-import Navbar from "@/components/Navbar";
+'use client'
 import "./globals.css";
-import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { FilterContextProvider } from "@/context/filter/FilterContext";
-import { usePathname } from "next/navigation";
 import { AuthContextProvider } from "@/context/auth/AuthContext";
+import Message from "@/components/Message/MessageBox";
+
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "700", "900"],
   subsets: ["latin"],
 });
 
-export default function RootLayout({
-  children,
-}: {
+interface Props {
   children: React.ReactNode;
-}) {
-  const pathName = usePathname();
-  console.log(pathName);
-  if (pathName == "/login") {
-    return (
-      <html lang="en">
-        <body className="poppins.calssName" id="root">{children}</body>
-      </html>
-    );
-  }
+}
+
+
+const RootLayout: React.FC<Props> = ({ children }) => {
   return (
     <html lang="en">
       <body className={poppins.className}>
+        <Message/>
         <AuthContextProvider>
-          <Navbar />
-          <FilterContextProvider>{children}</FilterContextProvider>
+          {children}
+          <div id="portal"></div>
         </AuthContextProvider>
-        <div id="portal"></div>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

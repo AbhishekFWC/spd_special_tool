@@ -22,21 +22,30 @@ const Filters = () => {
         <p className="font-medium">Smart Filters</p>
       </div>
       <div className="px-3 space-y-5">
-        <div className="flex justify-between items-center text-sm">
-          <p className="font-normal">Filters Applied</p>{" "}
-          <button className="text-blue-600 font-normal" onClick={resetFilters}>
-            Reset
-          </button>
-        </div>
+        {filters.industry.length > 0 || filters.round.length > 0 ? (
+          <>
+            {" "}
+            <div className="flex items-center justify-between text-sm">
+              <p className="font-normal">Filters Applied</p>{" "}
+              <button
+                className="font-normal text-blue-600"
+                onClick={resetFilters}
+              >
+                Reset
+              </button>
+            </div>
+            <div className="flex flex-wrap py-2 border-gray-100 border-b-[1px]">
+              {filters.industry?.map((ele) => (
+                <Keyword key={ele} filterType="industry" keyword={ele} />
+              ))}
+              {filters.round.map((ele) => (
+                <Keyword key={ele} filterType="round" keyword={ele} />
+              ))}
+            </div>
+          </>
+        ) : null}
         {/* <-----------------------------------Keywords-------------------------------->  */}
-        <div className="flex flex-wrap py-2 border-gray-100 border-b-[1px]">
-          {filters.industry?.map((ele) => (
-            <Keyword key={ele} filterType="industry" keyword={ele} />
-          ))}
-          {filters.round.map((ele) => (
-            <Keyword key={ele} filterType="round" keyword={ele} />
-          ))}
-        </div>
+
         {/* <-----------------------------------Filters-------------------------------------> */}
         <div className="space-y-5">
           <FilterType
